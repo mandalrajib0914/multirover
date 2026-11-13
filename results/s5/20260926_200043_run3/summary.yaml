@@ -1,0 +1,14 @@
+robot: robot1
+tag: run3
+end_reason: exploration_complete
+exploration_time_s: 83.9
+distance_m: 12.43
+coverage_live: 0.9567
+time_to_90pct_s: 72.694
+time_to_95pct_s: 77.694
+time_to_99pct_of_final_s: 77.694
+saved_map: /home/rajib-mandal/Desktop/multirover/results/s5/20260926_200043_run3/map.yaml
+map_vs_gt:
+  wall_precision: 1.0
+  wall_recall: 0.996
+  coverage: 0.9570000000000001

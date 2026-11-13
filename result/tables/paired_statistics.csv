@@ -1,0 +1,18 @@
+family,first,second,pairs,median_difference_s,second_faster,p,p_holm
+Coordination,2 independent,2 nearest,10,31.1,8,0.009765625,0.01171875
+Coordination,2 independent,2 greedy,10,41.4,10,0.001953125,0.01171875
+Coordination,2 independent,2 hungarian,10,54.1,10,0.001953125,0.01171875
+Coordination,3 independent,3 nearest,10,71.6,10,0.001953125,0.01171875
+Coordination,3 independent,3 greedy,10,79.7,10,0.001953125,0.01171875
+Coordination,3 independent,3 hungarian,10,81.7,10,0.001953125,0.01171875
+Rule,2 nearest,2 greedy,10,5.9,8,0.16015625,0.48046875
+Rule,2 nearest,2 hungarian,10,12.0,9,0.009765625,0.05859375
+Rule,2 greedy,2 hungarian,10,4.1,6,0.19212716862511903,0.48046875
+Rule,3 nearest,3 greedy,10,8.0,7,0.048828125,0.244140625
+Rule,3 nearest,3 hungarian,10,12.0,7,0.10943302203680204,0.43773208814720815
+Rule,3 greedy,3 hungarian,10,-1.0,3,0.6736693243745802,0.6736693243745802
+Team size,1 greedy,2 greedy,10,30.0,8,0.013671875,0.02734375
+Team size,2 greedy,3 greedy,10,9.1,9,0.005859375,0.017578125
+Team size,1 independent,2 independent,10,-17.1,0,0.001953125,0.0078125
+Team size,2 independent,3 independent,10,-22.3,3,0.193359375,0.193359375
+Single robot,1 independent,1 greedy,10,1.8,5,0.556640625,0.556640625

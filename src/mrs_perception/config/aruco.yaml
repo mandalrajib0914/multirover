@@ -1,0 +1,15 @@
+# ArUco victim detector (S7). Marker values must match floor_plan.yaml `aruco:`.
+/**:
+  ros__parameters:
+    use_sim_time: true
+    image_topic: camera/image_raw        # per robot, under /robotN/ (sensor_msgs/Image)
+    dictionary: DICT_4X4_50
+    marker_id: 0                         # -1: any id
+    marker_size: 0.10                    # black square edge, m
+    marker_to_center: 0.10               # marker plane to the victim's centre (half the 0.2 m box), m
+    max_range: 2.0                       # ignore farther detections, m. Offline test (level camera,
+                                         # 0-50 deg off-axis): centre error <= 1.4 cm to 1.5 m, 3-7 cm
+                                         # at 2.0 m, 12-14 cm at 2.5 m (marker ~20 px wide there)
+    candidate_range: 4.0                 # sightings up to here go to /victim/candidate (investigate)
+    confirm_hits: 3                      # detections needed before the victim is "confirmed"
+    world_frame: map

@@ -1,0 +1,38 @@
+# S8 trial sets. Every condition (robots x strategy) runs the same 10 trials, so conditions
+# are compared on identical start/victim layouts. Trial t uses:
+#   start set  = start_order[t % len(start_order)]
+#   victim     = victim_order[t % len(victim_order)]
+# Poses are world-frame [x, y, yaw]; the arena is in mrs_gazebo/config/floor_plan.yaml.
+
+start_sets:
+  A:            # hall, west side (the S5-S7 poses)
+    robot1: [0.5, 0.5, 0.0]
+    robot2: [0.5, 1.0, 0.0]
+    robot3: [0.5, 1.5, 0.0]
+  B:            # room B, facing west (clear of the boxes at (2.6, 1.5) and (4.6, 1.2))
+    robot1: [3.5, 0.6, 3.1416]
+    robot2: [3.5, 1.1, 3.1416]
+    robot3: [3.5, 1.9, 3.1416]
+
+victims:        # 0.2 m box, ArUco on its +x face; the face points along yaw
+  V1: [3.0, 4.75, -1.5708]   # room C, north wall, facing south (the S2-S7 victim)
+  V2: [5.85, 4.6, 3.1416]    # room D, east wall, facing west
+  V3: [0.15, 3.0, 0.0]       # hall, west wall, facing east
+
+start_order: [A, B]
+victim_order: [V1, V2, V3]
+trials: 10
+
+# Conditions. With one robot, hungarian picks the same frontier as greedy, so it is left out.
+conditions:
+  - {robots: 1, strategy: independent}
+  - {robots: 1, strategy: nearest}
+  - {robots: 1, strategy: greedy}
+  - {robots: 2, strategy: independent}
+  - {robots: 2, strategy: nearest}
+  - {robots: 2, strategy: greedy}
+  - {robots: 2, strategy: hungarian}
+  - {robots: 3, strategy: independent}
+  - {robots: 3, strategy: nearest}
+  - {robots: 3, strategy: greedy}
+  - {robots: 3, strategy: hungarian}

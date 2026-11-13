@@ -1,0 +1,21 @@
+robots:
+- robot1
+- robot2
+n_robots: 2
+strategy: independent
+tag: i2b
+end_reason: exploration_complete
+exploration_time_s: 130.4
+distance_m: 31.02
+distance_per_robot_m:
+  robot1: 10.48
+  robot2: 20.55
+coverage_live: 0.9445
+time_to_90pct_s: 45.519
+time_to_95pct_s: null
+time_to_99pct_of_final_s: 45.519
+saved_map: /home/rajib-mandal/Desktop/multirover/results/s6/20260926_215051_i2b/map.yaml
+map_vs_gt:
+  wall_precision: 1.0
+  wall_recall: 0.997
+  coverage: 0.945

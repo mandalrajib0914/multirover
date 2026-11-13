@@ -1,0 +1,25 @@
+# Frontier coordinator (S6.3). S8 sweeps these, so keep every tunable here.
+/**:
+  ros__parameters:
+    use_sim_time: true
+    strategy: greedy          # nearest | greedy | hungarian
+    period: 2.0               # T, s between assignments
+    lambda: 0.5               # λ, score = gain(m) - λ · cost(m)
+    discount_radius: 1.5      # R, greedy: frontiers within R of an assigned one lose gain (d/R)
+    resend_dist: 0.5          # D, re-send a goal only if the target moved more than this, m
+    hysteresis: 2.0           # score bonus (m) for a robot's current target: stops thrashing
+    min_size: 0.5             # frontier clusters shorter than this are ignored, m
+    goal_clearance: 0.20      # goal cell at least this far from occupied cells, m
+    path_clearance: 0.15      # cost paths only through cells this far from obstacles, m
+    cost_mode: path           # path (grid shortest path) | euclidean
+    max_failures: 2           # blacklist a frontier after this many aborted/stalled goals
+    reached_grace: 5.0        # skip a frontier still there this long after its goal was reached, s
+    progress_timeout: 30.0    # s without getting 0.1 m closer = stalled
+    done_cycles: 2            # periods in a row with no frontiers = done
+    unreachable_timeout: 15.0 # frontiers left but none reachable by any robot this long = done, s
+    return_home: true
+    stop_on_victim: true      # S7 mission: end (and go home) once the victim is confirmed.
+                              # Exploration experiments set it false to explore everything.
+    view_dists: [1.2, 1.0, 1.5]        # investigate a sighting from this far in front of the marker, m
+    view_angles: [0.0, 0.35, -0.35]    # ... and this far off its normal, rad (tried in order)
+    view_dwell: 3.0                    # s to look from a viewpoint before trying the next

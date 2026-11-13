@@ -1,0 +1,88 @@
+# Single source of truth for the arena: sim world, ground-truth map and the physical build.
+# Regenerate with:  ros2 run mrs_gazebo make_floor.py
+#
+# Layout (6 x 5 m), doors 0.8 m (> 2.5 x robot width):
+#
+#  y=5 +--------+-----------+--------+
+#      |        |           |        |
+#      |  hall  D   room C  D room D |
+#      |        |           |        |
+#  2.5 |        +--D----+-------D----+
+#      |        |                    |
+#      | spawn  |      room B        |
+#      |        D                    |
+#  y=0 +--------+--------------------+
+#     x=0      1.5         4.0      6.0
+#
+# Loops: hall -> B -> C -> hall, and B -> C -> D -> B.
+
+wall_height: 0.30
+wall_thickness: 0.05
+
+walls:            # [x1, y1, x2, y2] in metres, world frame
+  # outer
+  - [0.0, 0.0, 6.0, 0.0]
+  - [6.0, 0.0, 6.0, 5.0]
+  - [6.0, 5.0, 0.0, 5.0]
+  - [0.0, 5.0, 0.0, 0.0]
+  # hall | rooms (doors y 0.3-1.1 and y 3.6-4.4)
+  - [1.5, 0.0, 1.5, 0.3]
+  - [1.5, 1.1, 1.5, 3.6]
+  - [1.5, 4.4, 1.5, 5.0]
+  # room B | rooms C, D (doors x 2.5-3.3 and x 4.8-5.6)
+  - [1.5, 2.5, 2.5, 2.5]
+  - [3.3, 2.5, 4.8, 2.5]
+  - [5.6, 2.5, 6.0, 2.5]
+  # room C | room D (door y 3.5-4.3)
+  - [4.0, 2.5, 4.0, 3.5]
+  - [4.0, 4.3, 4.0, 5.0]
+
+obstacles:        # [cx, cy, size_x, size_y] boxes, full wall height
+  - [4.6, 1.2, 0.30, 0.30]
+  - [2.6, 1.5, 0.40, 0.20]
+  - [5.2, 3.9, 0.30, 0.30]
+
+spawn_poses:      # x, y, yaw — also where you tape the real start positions
+  robot1: [0.5, 0.5, 0.0]
+  robot2: [0.5, 1.0, 0.0]
+  robot3: [0.5, 1.5, 0.0]
+
+victim: [3.0, 4.75, -1.5708]   # x, y, yaw; the ArUco face points along the victim's +x
+
+aruco:
+  dictionary: DICT_4X4_50
+  id: 0
+  marker_size: 0.10            # black square edge, metres
+  victim_size: 0.20            # box edge, metres
+
+gt_map:
+  resolution: 0.05
+  margin: 0.5                  # unknown border around the arena, metres
+
+# Scripted mapping tour for tour_driver.py (S3+): world-frame [x, y] waypoints through the
+# door centres. Covers every room and closes both loops (B -> C -> D -> B, hall -> B -> C -> hall).
+tour:
+  - [0.75, 0.7]
+  - [2.0, 0.7]     # hall -> room B
+  - [5.5, 0.6]
+  - [5.5, 1.9]
+  - [2.9, 1.95]
+  - [2.9, 3.2]     # room B -> room C
+  - [2.9, 3.9]
+  - [4.5, 3.9]     # room C -> room D
+  - [4.5, 4.6]
+  - [5.6, 4.6]
+  - [5.6, 3.2]
+  - [5.2, 3.2]
+  - [5.2, 1.9]     # room D -> room B: loop 1 closed
+  - [2.0, 1.9]
+  - [2.0, 0.7]
+  - [0.75, 0.7]    # room B -> hall
+  - [0.75, 4.0]
+  - [2.2, 4.0]     # hall -> room C
+  - [2.2, 3.2]
+  - [3.5, 3.2]     # back in room C: loop 2 closed
+  - [2.2, 3.2]
+  - [2.2, 4.0]
+  - [0.75, 4.0]
+  - [0.75, 2.0]

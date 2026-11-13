@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "Please cite this software release if you use its code or experimental data."
+type: software
+title: "Multirover: Coordinated Frontier Exploration and Victim Localization"
+authors:
+  - family-names: Mandal
+    given-names: Rajib
+version: 1.0.0
+date-released: 2026-11-13
+repository-code: "https://github.com/mandalrajib0914/multirover"
+url: "https://github.com/mandalrajib0914/multirover/releases/tag/v1.0.0"
+abstract: >-
+  ROS 2 simulation, frontier coordination, victim detection, and recorded
+  experimental data for indoor exploration with one to three ground robots.
+keywords:
+  - robotics
+  - ROS 2
+  - multi-robot exploration
+  - frontier allocation
+  - simulation

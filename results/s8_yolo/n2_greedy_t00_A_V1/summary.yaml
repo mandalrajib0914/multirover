@@ -1,0 +1,36 @@
+robots:
+- robot1
+- robot2
+n_robots: 2
+strategy: greedy
+tag: n2_greedy_t00_A_V1
+end_reason: exploration_complete
+exploration_time_s: 54.0
+distance_m: 16.65
+distance_per_robot_m:
+  robot1: 9.16
+  robot2: 7.49
+coverage_live: 0.9452
+time_to_90pct_s: 37.998
+time_to_95pct_s: null
+time_to_99pct_of_final_s: 42.998
+victim:
+  true_xy:
+  - 3.0
+  - 4.645
+  time_to_confirm_s: 17.1
+  confirmed_xy:
+  - 3.019
+  - 4.628
+  confirmed_error_m: 0.025
+  final_xy:
+  - 2.999
+  - 4.674
+  final_error_m: 0.029
+saved_map: /home/rajib-mandal/Desktop/multirover/results/s8_yolo/n2_greedy_t00_A_V1/map.yaml
+map_vs_gt:
+  wall_precision: 1.0
+  wall_recall: 1.0
+  wall_F1: 1.0
+  free_IoU: 0.9440000000000001
+  coverage: 0.945

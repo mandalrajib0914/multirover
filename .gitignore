@@ -1,0 +1,36 @@
+# Local files and generated artifacts
+.*
+!.gitignore
+__pycache__/
+*.py[cod]
+build/
+install/
+log/
+node_modules/
+*.egg-info/
+*.log
+*.log.gz
+*.mcap
+*.db3
+*.pt
+*.zip
+*.tar*
+*.pdf
+*.docx
+*.pptx
+*.tex
+conference/
+conference_2/
+submitted to conference/
+presentation/
+proposal/
+LOG.md
+session.md
+sim_plan.md
+multirobo_plan.md
+PROJECT_WALKTHROUGH.md
+RESTORE.md
+
+# Large recordings are distributed as versioned release downloads.
+bag/
+*.mcap.zstd

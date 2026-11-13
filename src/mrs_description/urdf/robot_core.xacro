@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Root: projection of the robot centre (wheel axle) on the ground -->
+  <link name="${prefix}base_footprint"/>
+
+  <!-- base_link sits on the wheel axle -->
+  <joint name="${prefix}base_joint" type="fixed">
+    <parent link="${prefix}base_footprint"/>
+    <child link="${prefix}base_link"/>
+    <origin xyz="0 0 ${wheel_radius}" rpy="0 0 0"/>
+  </joint>
+
+  <link name="${prefix}base_link">
+    <visual>
+      <origin xyz="${chassis_x} 0 ${chassis_height / 2}" rpy="0 0 0"/>
+      <geometry><box size="${chassis_length} ${chassis_width} ${chassis_height}"/></geometry>
+      <material name="orange"/>
+    </visual>
+    <collision>
+      <origin xyz="${chassis_x} 0 ${chassis_height / 2}" rpy="0 0 0"/>
+      <geometry><box size="${chassis_length} ${chassis_width} ${chassis_height}"/></geometry>
+    </collision>
+    <xacro:inertial_box mass="${chassis_mass}" x="${chassis_length}" y="${chassis_width}" z="${chassis_height}">
+      <origin xyz="${chassis_x} 0 ${chassis_height / 2}" rpy="0 0 0"/>
+    </xacro:inertial_box>
+  </link>
+
+  <!-- Drive wheels. Both use rpy -pi/2 0 0 + axis 0 0 1 (= parent +y),
+       so positive joint velocity rolls both wheels forward. -->
+  <xacro:macro name="drive_wheel" params="side y">
+    <joint name="${prefix}${side}_wheel_joint" type="continuous">
+      <parent link="${prefix}base_link"/>
+      <child link="${prefix}${side}_wheel"/>
+      <origin xyz="0 ${y} 0" rpy="${-pi/2} 0 0"/>
+      <axis xyz="0 0 1"/>
+    </joint>
+
+    <link name="${prefix}${side}_wheel">
+      <visual>
+        <geometry><cylinder radius="${wheel_radius}" length="${wheel_width}"/></geometry>
+        <material name="black"/>
+      </visual>
+      <!-- Sphere, not cylinder: gz cylinder-plane contacts land on the wheel's inner
+           edge, shrinking the effective track (~0.174 instead of 0.20 m) so spins
+           over-rotate. A sphere touches the ground on the wheel centre line. -->
+      <collision>
+        <geometry><sphere radius="${wheel_radius}"/></geometry>
+      </collision>
+      <xacro:inertial_cylinder mass="${wheel_mass}" length="${wheel_width}" radius="${wheel_radius}">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+      </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="${prefix}${side}_wheel">
+      <mu1>1.0</mu1>
+      <mu2>1.0</mu2>
+    </gazebo>
+  </xacro:macro>
+
+  <xacro:drive_wheel side="left" y="${wheel_separation / 2}"/>
+  <xacro:drive_wheel side="right" y="${-wheel_separation / 2}"/>
+
+  <!-- Rear caster: fixed, near-frictionless sphere touching the ground -->
+  <joint name="${prefix}caster_wheel_joint" type="fixed">
+    <parent link="${prefix}base_link"/>
+    <child link="${prefix}caster_wheel"/>
+    <origin xyz="${caster_x} 0 ${caster_radius - wheel_radius}" rpy="0 0 0"/>
+  </joint>
+
+  <link name="${prefix}caster_wheel">
+    <visual>
+      <geometry><sphere radius="${caster_radius}"/></geometry>
+      <material name="grey"/>
+    </visual>
+    <collision>
+      <geometry><sphere radius="${caster_radius}"/></geometry>
+    </collision>
+    <xacro:inertial_sphere mass="${caster_mass}" radius="${caster_radius}">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </xacro:inertial_sphere>
+  </link>
+
+  <gazebo reference="${prefix}caster_wheel">
+    <mu1>0.001</mu1>
+    <mu2>0.001</mu2>
+  </gazebo>
+
+</robot>

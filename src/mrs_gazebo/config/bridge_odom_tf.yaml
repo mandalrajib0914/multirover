@@ -1,0 +1,7 @@
+# DiffDrive odom -> base_footprint TF. Only for running the sim WITHOUT the EKF
+# (sim_one_robot.launch.py odom_tf:=true). With the EKF up, two TF sources would fight.
+- ros_topic_name: "tf"
+  gz_topic_name: "tf"
+  ros_type_name: "tf2_msgs/msg/TFMessage"
+  gz_type_name: "gz.msgs.Pose_V"
+  direction: GZ_TO_ROS

@@ -1,0 +1,21 @@
+robots:
+- robot1
+- robot2
+n_robots: 2
+strategy: greedy
+tag: g2d
+end_reason: exploration_complete
+exploration_time_s: 62.0
+distance_m: 18.55
+distance_per_robot_m:
+  robot1: 9.25
+  robot2: 9.3
+coverage_live: 0.9472
+time_to_90pct_s: 42.998
+time_to_95pct_s: null
+time_to_99pct_of_final_s: 47.998
+saved_map: /home/rajib-mandal/Desktop/multirover/results/s6/20260926_213953_g2d/map.yaml
+map_vs_gt:
+  wall_precision: 1.0
+  wall_recall: 1.0
+  coverage: 0.9470000000000001

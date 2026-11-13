@@ -1,0 +1,19 @@
+# YOLO victim detector (S7b). Runs from the project venv (.venv), see yolo_victim_node.py.
+# The victim is models/victim_person (Rescue Randy Sitting at scale 0.4, 0.29 m tall).
+/**:
+  ros__parameters:
+    use_sim_time: true
+    image_topic: camera/image_raw
+    conf: 0.5               # YOLO confidence for class "person" (the doll scored 0.77-0.94 at 0.8-4 m;
+                            # the only false detections, board-like objects, stayed below 0.27)
+    rate: 5.0               # Hz per robot
+    box_fraction: 0.6       # range from the lidar points in the central 60 % of the box width
+    cluster_depth: 0.15     # ... within 0.15 m of the nearest of them (not what's behind)
+    person_height: 0.29     # m: box height -> distance cross-check against the lidar
+    size_tolerance: 0.5     # reject if lidar and box distance differ by more than 50 %
+    body_offset: 0.07       # m, lidar hits the near surface. Gazebo test, offset 0: front 0 / 0 /
+                            # -5 / +3 cm at 1-4 m, side -9 cm, back -17 cm; 0.07 keeps all within ~10 cm
+    max_range: 4.0          # hits (detected in every frame and ranged within ~10 cm out to 4 m)
+    candidate_range: 6.0    # sightings to investigate
+    confirm_hits: 3
+    world_frame: map

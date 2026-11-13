@@ -1,0 +1,21 @@
+robots:
+- robot1
+- robot2
+n_robots: 2
+strategy: hungarian
+tag: h2a
+end_reason: exploration_complete
+exploration_time_s: 66.0
+distance_m: 19.41
+distance_per_robot_m:
+  robot1: 10.98
+  robot2: 8.43
+coverage_live: 0.9362
+time_to_90pct_s: 42.998
+time_to_95pct_s: null
+time_to_99pct_of_final_s: 47.998
+saved_map: /home/rajib-mandal/Desktop/multirover/results/s6/20260926_215417_h2a/map.yaml
+map_vs_gt:
+  wall_precision: 0.988
+  wall_recall: 1.0
+  coverage: 0.9359999999999999

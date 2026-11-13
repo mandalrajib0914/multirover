@@ -1,0 +1,20 @@
+# explore_lite (m-explore-ros2) for one robot (S5). Plan values, except where noted.
+/**:
+  ros__parameters:
+    use_sim_time: true
+    robot_base_frame: base_footprint
+    # The SLAM map, not global_costmap/costmap (the plan's value). explore_lite's frontier
+    # BFS only walks into cells whose cost is <= the current cell's. In the inflated costmap a
+    # 0.8 m door's centre is 0.4 m from each jamb, inside the 0.45 m inflation, so the search
+    # could not get through a door. The SLAM map has no inflation.
+    costmap_topic: map
+    costmap_updates_topic: map_updates   # slam_toolbox doesn't publish this; full maps only
+    visualize: true                      # explore/frontiers markers
+    planner_frequency: 0.25
+    progress_timeout: 30.0
+    potential_scale: 3.0
+    orientation_scale: 0.0
+    gain_scale: 1.0
+    transform_tolerance: 0.3
+    min_frontier_size: 0.5
+    return_to_init: true

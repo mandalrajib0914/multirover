@@ -1,0 +1,34 @@
+robots:
+- robot1
+- robot2
+n_robots: 2
+strategy: greedy
+tag: v2b
+end_reason: victim_confirmed
+exploration_time_s: 24.9
+distance_m: 7.06
+distance_per_robot_m:
+  robot1: 3.37
+  robot2: 3.69
+coverage_live: 0.7595
+time_to_90pct_s: null
+time_to_95pct_s: null
+time_to_99pct_of_final_s: 24.94
+victim:
+  true_xy:
+  - 3.0
+  - 4.75
+  time_to_confirm_s: 24.9
+  confirmed_xy:
+  - 3.021
+  - 4.811
+  confirmed_error_m: 0.065
+  final_xy:
+  - 3.021
+  - 4.811
+  final_error_m: 0.065
+saved_map: /home/rajib-mandal/Desktop/multirover/results/s7/20260926_223912_v2b/map.yaml
+map_vs_gt:
+  wall_precision: 0.998
+  wall_recall: 0.898
+  coverage: 0.76

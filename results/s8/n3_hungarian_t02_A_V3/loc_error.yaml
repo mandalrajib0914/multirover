@@ -1,0 +1,5 @@
+max_error_m: 0.07
+per_robot_max_m:
+  robot1: 0.07
+  robot2: 0.051
+  robot3: 0.066

@@ -1,0 +1,30 @@
+robots:
+- robot1
+n_robots: 1
+strategy: nearest
+tag: n1_nearest_t08_A_V3
+end_reason: exploration_complete
+exploration_time_s: 98.0
+distance_m: 12.23
+distance_per_robot_m:
+  robot1: 12.23
+coverage_live: 0.9489
+time_to_90pct_s: 47.999
+time_to_95pct_s: 57.99900000000001
+time_to_99pct_of_final_s: 52.999
+victim:
+  true_xy:
+  - 0.15
+  - 3.0
+  time_to_confirm_s: null
+  confirmed_xy: null
+  confirmed_error_m: null
+  final_xy: null
+  final_error_m: null
+saved_map: /home/rajib-mandal/Desktop/multirover/results/s8/n1_nearest_t08_A_V3/map.yaml
+map_vs_gt:
+  wall_precision: 1.0
+  wall_recall: 0.996
+  wall_F1: 0.998
+  free_IoU: 0.948
+  coverage: 0.95

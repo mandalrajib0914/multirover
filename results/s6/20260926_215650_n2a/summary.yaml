@@ -1,0 +1,21 @@
+robots:
+- robot1
+- robot2
+n_robots: 2
+strategy: nearest
+tag: n2a
+end_reason: exploration_complete
+exploration_time_s: 66.0
+distance_m: 16.43
+distance_per_robot_m:
+  robot1: 8.43
+  robot2: 8.0
+coverage_live: 0.9443
+time_to_90pct_s: 55.998000000000005
+time_to_95pct_s: null
+time_to_99pct_of_final_s: 60.998
+saved_map: /home/rajib-mandal/Desktop/multirover/results/s6/20260926_215650_n2a/map.yaml
+map_vs_gt:
+  wall_precision: 0.9990000000000001
+  wall_recall: 0.996
+  coverage: 0.9440000000000001

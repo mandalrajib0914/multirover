@@ -1,0 +1,9 @@
+robots,strategy,pairs,speedup_mean,speedup_ci95
+2,independent,10,0.79,0.11
+2,nearest,9,1.61,0.65
+2,greedy,10,1.67,0.52
+2,hungarian,10,1.79,0.56
+3,independent,10,0.67,0.06
+3,nearest,9,1.96,0.61
+3,greedy,10,2.18,0.56
+3,hungarian,10,2.17,0.56

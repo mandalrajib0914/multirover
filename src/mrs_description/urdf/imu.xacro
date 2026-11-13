@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <joint name="${prefix}imu_joint" type="fixed">
+    <parent link="${prefix}base_link"/>
+    <child link="${prefix}imu_link"/>
+    <origin xyz="0 0 ${chassis_height / 2}" rpy="0 0 0"/>
+  </joint>
+
+  <link name="${prefix}imu_link">
+    <visual>
+      <geometry><box size="0.02 0.02 0.005"/></geometry>
+      <material name="red"/>
+    </visual>
+    <xacro:inertial_box mass="0.005" x="0.02" y="0.02" z="0.005">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </xacro:inertial_box>
+  </link>
+
+  <xacro:macro name="imu_noise" params="stddev">
+    <noise type="gaussian">
+      <mean>0.0</mean>
+      <stddev>${stddev}</stddev>
+    </noise>
+  </xacro:macro>
+
+  <gazebo reference="${prefix}imu_link">
+    <sensor name="imu" type="imu">
+      <topic>${gz_ns}imu/data</topic>
+      <gz_frame_id>${prefix}imu_link</gz_frame_id>
+      <update_rate>100</update_rate>
+      <always_on>true</always_on>
+      <imu>
+        <angular_velocity>
+          <x><xacro:imu_noise stddev="0.002"/></x>
+          <y><xacro:imu_noise stddev="0.002"/></y>
+          <z><xacro:imu_noise stddev="0.002"/></z>
+        </angular_velocity>
+        <linear_acceleration>
+          <x><xacro:imu_noise stddev="0.02"/></x>
+          <y><xacro:imu_noise stddev="0.02"/></y>
+          <z><xacro:imu_noise stddev="0.02"/></z>
+        </linear_acceleration>
+      </imu>
+    </sensor>
+  </gazebo>
+
+</robot>

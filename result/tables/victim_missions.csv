@@ -1,0 +1,7 @@
+run,robots,strategy,stops_at_victim,end_reason,mission_time_s,time_to_confirm_s,confirmed_error_m,final_error_m,coverage_at_end,distance_m
+20260926_223912_v2b,2,greedy,True,victim_confirmed,24.9,24.9,0.065,0.065,0.76,7.06
+20260926_224052_v2c,2,greedy,True,victim_confirmed,32.7,32.7,0.057,0.057,0.8220000000000001,10.41
+20260926_224234_v2d,2,greedy,True,victim_confirmed,33.4,33.4,0.045,0.045,0.826,10.0
+20260926_224359_v1a,1,greedy,True,victim_confirmed,30.9,30.9,0.068,0.068,0.759,4.95
+20260926_224538_v3a,3,greedy,True,victim_confirmed,34.5,34.5,0.033,0.033,0.855,16.98
+20260926_224747_vx2a,2,greedy,False,exploration_complete,82.0,52.0,0.038,0.051,0.932,19.83

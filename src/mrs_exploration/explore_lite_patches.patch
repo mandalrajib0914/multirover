@@ -1,0 +1,69 @@
+diff --git a/explore/include/explore/explore.h b/explore/include/explore/explore.h
+index 8799783..2a45d88 100644
+--- a/explore/include/explore/explore.h
++++ b/explore/include/explore/explore.h
+@@ -128,6 +128,13 @@ private:
+   void resumeCallback(const std_msgs::msg::Bool::SharedPtr msg);
+ 
+   std::vector<geometry_msgs::msg::Point> frontier_blacklist_;
++  // When each frontier goal was first reached. A frontier still chosen more than
++  // reached_grace_ s after it was reached can't be cleared from where the robot can stand (e.g.
++  // a lidar shadow behind an obstacle); without this its goal is re-sent and "succeeds" forever
++  // (a livelock seen in multirover S8: ~10 goals/s for 500 s). The grace period lets the map
++  // catch up first: right after a success the old map still shows the frontier.
++  std::vector<std::pair<geometry_msgs::msg::Point, rclcpp::Time>> reached_goals_;
++  double reached_grace_ = 5.0;
+   geometry_msgs::msg::Point prev_goal_;
+   double prev_distance_;
+   rclcpp::Time last_progress_;
+diff --git a/explore/src/explore.cpp b/explore/src/explore.cpp
+index d72fb18..c31ae68 100644
+--- a/explore/src/explore.cpp
++++ b/explore/src/explore.cpp
+@@ -382,11 +382,24 @@ void Explore::reachedGoal(const NavigationGoalHandle::WrappedResult& result,
+ 
+   goal_active_ = false;
+   switch (result.code) {
+-    case rclcpp_action::ResultCode::SUCCEEDED:
++    case rclcpp_action::ResultCode::SUCCEEDED: {
+       RCLCPP_DEBUG(logger_, "Goal was successful");
+       last_progress_ = this->now();
+       prev_distance_ = 0;
++      // Same tolerance as goalOnBlacklist(): 5 cells.
++      const double tol = 5 * costmap_client_.getCostmap()->getResolution();
++      auto it = std::find_if(reached_goals_.begin(), reached_goals_.end(), [&](const auto& g) {
++        return fabs(g.first.x - frontier_goal.x) < tol && fabs(g.first.y - frontier_goal.y) < tol;
++      });
++      if (it == reached_goals_.end()) {
++        reached_goals_.emplace_back(frontier_goal, this->now());
++      } else if ((this->now() - it->second).seconds() > reached_grace_) {
++        RCLCPP_INFO(logger_, "Frontier (%.2f, %.2f) still there %.0f s after it was reached, "
++                    "blacklisting", frontier_goal.x, frontier_goal.y, reached_grace_);
++        frontier_blacklist_.push_back(frontier_goal);
++      }
+       break;
++    }
+     case rclcpp_action::ResultCode::ABORTED:
+ #ifdef NAV2_RESULT_HAS_ERROR_CODE
+       if (result.result && result.result->error_code != 0) {
+@@ -446,11 +459,18 @@ void Explore::stop(bool finished_exploring)
+     status_pub_->publish(status_msg);
+   }
+ 
+-  move_base_client_->async_cancel_all_goals();
+   exploring_timer_->cancel();
+ 
+   if (return_to_init_ && finished_exploring) {
+-    returnToInitialPose();
++    // Send the return goal only once the cancel has been processed. Sent right away, the
++    // cancel-all request can reach the server after the new goal and cancel it as well.
++    move_base_client_->async_cancel_all_goals(
++        [this](typename rclcpp_action::Client<
++            nav2_msgs::action::NavigateToPose>::CancelResponse::SharedPtr) {
++          returnToInitialPose();
++        });
++  } else {
++    move_base_client_->async_cancel_all_goals();
+   }
+ }
+ 

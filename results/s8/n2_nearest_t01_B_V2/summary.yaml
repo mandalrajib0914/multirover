@@ -1,0 +1,36 @@
+robots:
+- robot1
+- robot2
+n_robots: 2
+strategy: nearest
+tag: n2_nearest_t01_B_V2
+end_reason: exploration_complete
+exploration_time_s: 60.0
+distance_m: 17.29
+distance_per_robot_m:
+  robot1: 10.68
+  robot2: 6.61
+coverage_live: 0.9306
+time_to_90pct_s: 42.998
+time_to_95pct_s: null
+time_to_99pct_of_final_s: 47.998
+victim:
+  true_xy:
+  - 5.85
+  - 4.6
+  time_to_confirm_s: 58.5
+  confirmed_xy:
+  - 5.821
+  - 4.649
+  confirmed_error_m: 0.057
+  final_xy:
+  - 5.821
+  - 4.649
+  final_error_m: 0.057
+saved_map: /home/rajib-mandal/Desktop/multirover/results/s8/n2_nearest_t01_B_V2/map.yaml
+map_vs_gt:
+  wall_precision: 0.991
+  wall_recall: 0.997
+  wall_F1: 0.9940000000000001
+  free_IoU: 0.929
+  coverage: 0.932

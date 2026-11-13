@@ -1,0 +1,21 @@
+robots:
+- robot1
+- robot2
+n_robots: 2
+strategy: independent
+tag: i2a
+end_reason: exploration_complete
+exploration_time_s: 102.7
+distance_m: 25.98
+distance_per_robot_m:
+  robot1: 12.48
+  robot2: 13.5
+coverage_live: 0.9385
+time_to_90pct_s: 63.093
+time_to_95pct_s: null
+time_to_99pct_of_final_s: 68.093
+saved_map: /home/rajib-mandal/Desktop/multirover/results/s6/20260926_214752_i2a/map.yaml
+map_vs_gt:
+  wall_precision: 0.9990000000000001
+  wall_recall: 1.0
+  coverage: 0.9390000000000001

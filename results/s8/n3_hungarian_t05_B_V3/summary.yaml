@@ -1,0 +1,38 @@
+robots:
+- robot1
+- robot2
+- robot3
+n_robots: 3
+strategy: hungarian
+tag: n3_hungarian_t05_B_V3
+end_reason: exploration_complete
+exploration_time_s: 38.0
+distance_m: 15.28
+distance_per_robot_m:
+  robot1: 4.57
+  robot2: 5.13
+  robot3: 5.59
+coverage_live: 0.9411
+time_to_90pct_s: 27.997000000000003
+time_to_95pct_s: null
+time_to_99pct_of_final_s: 27.997000000000003
+victim:
+  true_xy:
+  - 0.15
+  - 3.0
+  time_to_confirm_s: 17.8
+  confirmed_xy:
+  - 0.117
+  - 3.026
+  confirmed_error_m: 0.042
+  final_xy:
+  - 0.142
+  - 2.982
+  final_error_m: 0.02
+saved_map: /home/rajib-mandal/Desktop/multirover/results/s8/n3_hungarian_t05_B_V3/map.yaml
+map_vs_gt:
+  wall_precision: 1.0
+  wall_recall: 0.988
+  wall_F1: 0.9940000000000001
+  free_IoU: 0.9420000000000001
+  coverage: 0.943

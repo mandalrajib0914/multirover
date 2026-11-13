@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CycloneDDS for the simulation: everything on this machine, over loopback.
+     Without it, Cyclone discovers over Wi-Fi by unicast, where each process needs a
+     participant index and the default cap (MaxAutoParticipantIndex 9) runs out with two
+     robots' stacks: "Failed to find a free participant index for domain 42" and nodes die.
+     Used via CYCLONEDDS_URI (see ~/.bashrc). Real robots on Wi-Fi need a different file. -->
+<CycloneDDS xmlns="https://cdds.io/config">
+  <Domain Id="any">
+    <General>
+      <Interfaces>
+        <NetworkInterface name="lo" multicast="true"/>
+      </Interfaces>
+      <AllowMulticast>true</AllowMulticast>
+    </General>
+    <Discovery>
+      <ParticipantIndex>auto</ParticipantIndex>
+      <MaxAutoParticipantIndex>200</MaxAutoParticipantIndex>
+      <Peers>
+        <Peer address="localhost"/>
+      </Peers>
+    </Discovery>
+  </Domain>
+</CycloneDDS>

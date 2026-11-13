@@ -1,0 +1,32 @@
+robots:
+- robot1
+n_robots: 1
+strategy: greedy
+tag: v1a
+end_reason: victim_confirmed
+exploration_time_s: 30.9
+distance_m: 4.95
+distance_per_robot_m:
+  robot1: 4.95
+coverage_live: 0.7592
+time_to_90pct_s: null
+time_to_95pct_s: null
+time_to_99pct_of_final_s: 30.851999999999997
+victim:
+  true_xy:
+  - 3.0
+  - 4.75
+  time_to_confirm_s: 30.9
+  confirmed_xy:
+  - 3.053
+  - 4.793
+  confirmed_error_m: 0.068
+  final_xy:
+  - 3.053
+  - 4.793
+  final_error_m: 0.068
+saved_map: /home/rajib-mandal/Desktop/multirover/results/s7/20260926_224359_v1a/map.yaml
+map_vs_gt:
+  wall_precision: 1.0
+  wall_recall: 0.846
+  coverage: 0.759

@@ -1,0 +1,19 @@
+robots:
+- robot1
+n_robots: 1
+strategy: greedy
+tag: g1b
+end_reason: exploration_complete
+exploration_time_s: 68.0
+distance_m: 10.36
+distance_per_robot_m:
+  robot1: 10.36
+coverage_live: 0.9549
+time_to_90pct_s: 52.999
+time_to_95pct_s: 62.999
+time_to_99pct_of_final_s: 62.999
+saved_map: /home/rajib-mandal/Desktop/multirover/results/s6/20260926_213235_g1b/map.yaml
+map_vs_gt:
+  wall_precision: 1.0
+  wall_recall: 0.995
+  coverage: 0.955

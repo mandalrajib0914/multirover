@@ -1,0 +1,36 @@
+robots:
+- robot1
+- robot2
+n_robots: 2
+strategy: independent
+tag: n2_independent_t09_B_V1
+end_reason: exploration_complete
+exploration_time_s: 99.3
+distance_m: 29.55
+distance_per_robot_m:
+  robot1: 14.66
+  robot2: 14.88
+coverage_live: 0.9481
+time_to_90pct_s: 67.425
+time_to_95pct_s: null
+time_to_99pct_of_final_s: 67.425
+victim:
+  true_xy:
+  - 3.0
+  - 4.645
+  time_to_confirm_s: 7.2
+  confirmed_xy:
+  - 2.962
+  - 4.678
+  confirmed_error_m: 0.05
+  final_xy:
+  - 2.989
+  - 4.661
+  final_error_m: 0.019
+saved_map: /home/rajib-mandal/Desktop/multirover/results/s8_yolo/n2_independent_t09_B_V1/map.yaml
+map_vs_gt:
+  wall_precision: 1.0
+  wall_recall: 0.977
+  wall_F1: 0.9890000000000001
+  free_IoU: 0.9470000000000001
+  coverage: 0.948

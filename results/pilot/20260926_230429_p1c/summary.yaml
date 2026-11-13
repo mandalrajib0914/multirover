@@ -1,0 +1,34 @@
+robots:
+- robot1
+- robot2
+n_robots: 2
+strategy: greedy
+tag: p1c
+end_reason: exploration_complete
+exploration_time_s: 55.2
+distance_m: 18.45
+distance_per_robot_m:
+  robot1: 8.82
+  robot2: 9.64
+coverage_live: 0.944
+time_to_90pct_s: 42.998
+time_to_95pct_s: null
+time_to_99pct_of_final_s: 47.998
+victim:
+  true_xy:
+  - 3.0
+  - 4.75
+  time_to_confirm_s: 33.2
+  confirmed_xy:
+  - 3.042
+  - 4.757
+  confirmed_error_m: 0.043
+  final_xy:
+  - 3.032
+  - 4.774
+  final_error_m: 0.04
+saved_map: /home/rajib-mandal/Desktop/multirover/results/pilot/20260926_230429_p1c/map.yaml
+map_vs_gt:
+  wall_precision: 1.0
+  wall_recall: 0.997
+  coverage: 0.9440000000000001

@@ -1,0 +1,23 @@
+robots:
+- robot1
+- robot2
+- robot3
+n_robots: 3
+strategy: greedy
+tag: g3a
+end_reason: exploration_complete
+exploration_time_s: 60.0
+distance_m: 24.26
+distance_per_robot_m:
+  robot1: 8.35
+  robot2: 7.57
+  robot3: 8.34
+coverage_live: 0.93
+time_to_90pct_s: 45.998
+time_to_95pct_s: null
+time_to_99pct_of_final_s: 45.998
+saved_map: /home/rajib-mandal/Desktop/multirover/results/s6/20260926_214316_g3a/map.yaml
+map_vs_gt:
+  wall_precision: 0.97
+  wall_recall: 0.996
+  coverage: 0.93

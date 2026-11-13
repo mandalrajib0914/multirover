@@ -1,0 +1,21 @@
+robots:
+- robot1
+- robot2
+n_robots: 2
+strategy: greedy
+tag: g2c
+end_reason: exploration_complete
+exploration_time_s: 66.0
+distance_m: 17.93
+distance_per_robot_m:
+  robot1: 8.05
+  robot2: 9.88
+coverage_live: 0.9485
+time_to_90pct_s: 45.998
+time_to_95pct_s: null
+time_to_99pct_of_final_s: 50.998
+saved_map: /home/rajib-mandal/Desktop/multirover/results/s6/20260926_213728_g2c/map.yaml
+map_vs_gt:
+  wall_precision: 1.0
+  wall_recall: 0.995
+  coverage: 0.9490000000000001

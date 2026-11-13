@@ -1,0 +1,39 @@
+# robot_localization EKF, one per robot. Fuses wheel-odom velocity with IMU yaw rate and
+# publishes odometry/filtered + the odom -> base_footprint TF (nothing else may publish it).
+# Frame names here are for a single un-prefixed robot; one_robot_stack.launch.py
+# overrides them with the robotN/ prefix in S6.
+# "/**" (any node name, any namespace): a plain "ekf_filter_node:" key only matches
+# /ekf_filter_node, so under /robotN the whole file would be silently ignored. One node per file.
+/**:
+  ros__parameters:
+    use_sim_time: true
+    frequency: 30.0
+    sensor_timeout: 0.2
+    two_d_mode: true
+    publish_tf: true
+    map_frame: map
+    odom_frame: odom
+    base_link_frame: base_footprint
+    world_frame: odom
+
+    # Wheel odometry. In sim this is sim_wheel_odom.py (gz odom + covariance + slip);
+    # on the real robot the base driver publishes it. Velocities only: integrating
+    # them is the EKF's job, and absolute odom pose would just double-count.
+    odom0: wheel/odom
+    odom0_config: [false, false, false,
+                   false, false, false,
+                   true,  true,  false,     # vx vy (vy = 0 is a real, non-holonomic measurement)
+                   false, false, true,      # vyaw
+                   false, false, false]
+    odom0_differential: false
+    odom0_queue_size: 10
+
+    imu0: imu/data
+    imu0_config: [false, false, false,
+                  false, false, false,      # no absolute yaw (sim/real IMU has no reliable mag)
+                  false, false, false,
+                  false, false, true,       # yaw rate: the key input
+                  false, false, false]
+    imu0_differential: false
+    imu0_queue_size: 20
+    imu0_remove_gravitational_acceleration: true

@@ -1,0 +1,24 @@
+step,run,robots,config,tag,end_reason,time_s,distance_m,time_to_90pct_s,time_to_99pct_of_final_s,coverage,wall_precision,wall_recall
+s5,20260926_195430_try1,1,explore_lite,try1,no_frontiers,111.8,12.47,57.29900000000001,,0.948,1.0,0.9840000000000001
+s5,20260926_195823_run2,1,explore_lite,run2,exploration_complete,79.9,12.97,67.295,72.295,0.9540000000000001,1.0,1.0
+s5,20260926_200043_run3,1,explore_lite,run3,exploration_complete,83.9,12.43,72.694,77.694,0.9570000000000001,1.0,0.996
+s5,20260926_200428_run4,1,explore_lite,run4,exploration_complete,95.9,13.76,65.438,70.438,0.946,1.0,0.985
+s5,20260926_200807_run5,1,explore_lite,run5,exploration_complete,87.9,12.27,67.379,77.379,0.956,1.0,0.985
+s5,20260926_201031_run6,1,explore_lite,run6,exploration_complete,59.9,9.08,45.423,50.423,0.955,1.0,1.0
+s6,20260926_213009_g1a,1,greedy,g1a,exploration_complete,78.0,12.76,62.999,67.999,0.958,1.0,0.996
+s6,20260926_213235_g1b,1,greedy,g1b,exploration_complete,68.0,10.36,52.999,62.999,0.955,1.0,0.995
+s6,20260926_213511_g2b,2,greedy,g2b,exploration_complete,55.9,17.2,47.998,52.998,0.9359999999999999,0.998,1.0
+s6,20260926_213728_g2c,2,greedy,g2c,exploration_complete,66.0,17.93,45.998,50.998,0.9490000000000001,1.0,0.995
+s6,20260926_213953_g2d,2,greedy,g2d,exploration_complete,62.0,18.55,42.998,47.998,0.9470000000000001,1.0,1.0
+s6,20260926_214316_g3a,3,greedy,g3a,exploration_complete,60.0,24.26,45.998,45.998,0.93,0.97,0.996
+s6,20260926_214534_g3b,3,greedy,g3b,exploration_complete,56.0,22.12,40.996,40.996,0.9309999999999999,0.986,1.0
+s6,20260926_214752_i2a,2,independent explore_lite,i2a,exploration_complete,102.7,25.98,63.093,68.093,0.9390000000000001,0.9990000000000001,1.0
+s6,20260926_215051_i2b,2,independent explore_lite,i2b,exploration_complete,130.4,31.02,45.519,45.519,0.945,1.0,0.997
+s6,20260926_215417_h2a,2,hungarian,h2a,exploration_complete,66.0,19.41,42.998,47.998,0.9359999999999999,0.988,1.0
+s6,20260926_215650_n2a,2,nearest,n2a,exploration_complete,66.0,16.43,55.998000000000005,60.998,0.9440000000000001,0.9990000000000001,0.996
+s6,20260926_220002_gh2a,2,greedy + hysteresis,gh2a,exploration_complete,56.0,16.34,42.998,47.998,0.941,1.0,1.0
+s6,20260926_220224_gh2b,2,greedy + hysteresis,gh2b,exploration_complete,50.7,16.56,40.998,45.998,0.94,1.0,1.0
+s6,20260926_220444_gh2c,2,greedy + hysteresis,gh2c,exploration_complete,62.0,18.41,42.999,47.999,0.94,1.0,1.0
+s6,20260926_220823_gh3a,3,greedy + hysteresis,gh3a,exploration_complete,50.0,24.66,45.998,45.998,0.927,0.987,1.0
+s6,20260926_221154_gh3b,3,greedy + hysteresis,gh3b,exploration_complete,64.1,25.07,47.996,47.996,0.914,0.963,1.0
+s6,20260926_221542_hh2a,2,hungarian + hysteresis,hh2a,exploration_complete,58.0,17.81,50.998,50.998,0.935,0.995,1.0

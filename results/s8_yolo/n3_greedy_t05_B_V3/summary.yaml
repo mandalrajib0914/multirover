@@ -1,0 +1,38 @@
+robots:
+- robot1
+- robot2
+- robot3
+n_robots: 3
+strategy: greedy
+tag: n3_greedy_t05_B_V3
+end_reason: exploration_complete
+exploration_time_s: 38.0
+distance_m: 17.65
+distance_per_robot_m:
+  robot1: 6.2
+  robot2: 5.73
+  robot3: 5.73
+coverage_live: 0.9231
+time_to_90pct_s: 37.996
+time_to_95pct_s: null
+time_to_99pct_of_final_s: 37.996
+victim:
+  true_xy:
+  - 0.255
+  - 3.0
+  time_to_confirm_s: 34.7
+  confirmed_xy:
+  - 0.111
+  - 2.976
+  confirmed_error_m: 0.146
+  final_xy:
+  - 0.232
+  - 2.993
+  final_error_m: 0.024
+saved_map: /home/rajib-mandal/Desktop/multirover/results/s8_yolo/n3_greedy_t05_B_V3/map.yaml
+map_vs_gt:
+  wall_precision: 0.997
+  wall_recall: 0.9990000000000001
+  wall_F1: 0.998
+  free_IoU: 0.922
+  coverage: 0.924
