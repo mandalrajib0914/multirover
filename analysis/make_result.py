@@ -1,21 +1,21 @@
 #!/usr/bin/env python3
-"""Rebuild the report-ready tables and figures in result/ from the raw runs in results/.
+"""Rebuild the report-ready tables and figures in results/ from the raw runs in data/.
 
-  cd ~/Desktop/multirover && python3 result/make_result.py
+  cd ~/Desktop/multirover && python3 analysis/make_result.py
 
-Reads results/s5/*/ and results/s6/*/ (results/excluded/ is ignored; one folder per run, written by exploration_monitor:
+Reads data/s5/*/ and data/s6/*/ (data/excluded/ is ignored; one folder per run, written by exploration_monitor:
 summary.yaml, coverage.csv, map.pgm/.yaml, map_vs_gt.png) and writes:
-  result/tables/all_runs.csv            one row per run
-  result/tables/summary_by_config.csv   mean / sd / min / max per (robots, strategy)
-  result/tables/summary_by_config.md    the same, as a Markdown table for the report
-  result/figures/exploration_time_by_config.png
-  result/figures/distance_by_config.png
-  result/figures/coverage_vs_time.png
-  result/tables/victim_missions.csv/.md S7: time to confirm the victim and its position error
-  result/figures/maps/                  map-vs-ground-truth overlays of selected runs
-  result/tables/s8_*, result/figures/s8/ S8 campaign (results/s8, see s8_analysis.py)
-  result/figures/arena.png, figures/s8/trajectories_n3.png, figures/s8/localization_failures.png,
-  result/figures/maps/{s7,s8}/          (report_figures.py; the localization figure needs ROS sourced)
+  results/tables/all_runs.csv            one row per run
+  results/tables/summary_by_config.csv   mean / sd / min / max per (robots, strategy)
+  results/tables/summary_by_config.md    the same, as a Markdown table for the report
+  results/figures/exploration_time_by_config.png
+  results/figures/distance_by_config.png
+  results/figures/coverage_vs_time.png
+  results/tables/victim_missions.csv/.md S7: time to confirm the victim and its position error
+  results/figures/maps/                  map-vs-ground-truth overlays of selected runs
+  results/tables/s8_*, results/figures/s8/ S8 campaign (data/s8, see s8_analysis.py)
+  results/figures/arena.png, figures/s8/trajectories_n3.png, figures/s8/localization_failures.png,
+  results/figures/maps/{s7,s8}/          (report_figures.py; the localization figure needs ROS sourced)
 New runs are picked up automatically, so re-run this after S8.
 
 Colours: the categorical palette, light mode, fixed order by
@@ -33,11 +33,11 @@ import matplotlib.pyplot as plt  # noqa: E402
 import numpy as np  # noqa: E402
 import yaml  # noqa: E402
 
-import report_figures  # noqa: E402  (result/report_figures.py)
-import s8_analysis  # noqa: E402  (result/s8_analysis.py)
+import report_figures  # noqa: E402  (analysis/report_figures.py)
+import s8_analysis  # noqa: E402  (analysis/s8_analysis.py)
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-OUT = os.path.join(ROOT, 'result')
+OUT = os.path.join(ROOT, 'results')
 
 # Categorical palette, light mode, slots 1-4 in order.
 C_1ROBOT, C_2ROBOTS, C_3ROBOTS, C_BASELINE = '#2a78d6', '#eb6834', '#1baf7a', '#eda100'
@@ -64,7 +64,7 @@ def config_of(d):
 def load_runs():
     runs = []
     for step in ('s5', 's6'):
-        for f in sorted(glob.glob(os.path.join(ROOT, 'results', step, '*', 'summary.yaml'))):
+        for f in sorted(glob.glob(os.path.join(ROOT, 'data', step, '*', 'summary.yaml'))):
             d = yaml.safe_load(open(f))
             folder = os.path.dirname(f)
             n, label = config_of(d)
@@ -209,10 +209,10 @@ def coverage_figure(runs, path):
 
 
 def victim_table():
-    """S7 runs (results/s7): kept out of the exploration tables because a mission that stops
+    """S7 runs (data/s7): kept out of the exploration tables because a mission that stops
     at the victim doesn't explore everything."""
     rows = []
-    for f in sorted(glob.glob(os.path.join(ROOT, 'results', 's7', '*', 'summary.yaml'))):
+    for f in sorted(glob.glob(os.path.join(ROOT, 'data', 's7', '*', 'summary.yaml'))):
         d = yaml.safe_load(open(f))
         v = d.get('victim') or {}
         rows.append({

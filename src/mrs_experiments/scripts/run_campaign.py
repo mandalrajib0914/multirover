@@ -6,7 +6,7 @@
 
 For every trial t and condition (robots x strategy) in config/trial_sets.yaml it writes a
 trial plan (start set + victim) and runs trial.launch.py headless into
-results/s8/<tag>/, tag = n<robots>_<strategy>_t<tt>_<start>_<victim>. The loop is trial-major
+data/s8/<tag>/, tag = n<robots>_<strategy>_t<tt>_<start>_<victim>. The loop is trial-major
 (all conditions for trial 0, then trial 1, ...), so a campaign stopped early is still
 balanced across conditions. Trials with a summary.yaml are skipped; a trial that ends
 without one gets failed.txt and is skipped next time unless --retry-failed.
@@ -99,7 +99,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--sets', default=os.path.join(
         get_package_share_directory('mrs_experiments'), 'config', 'trial_sets.yaml'))
-    ap.add_argument('--results', default='', help='default: results/s8, or results/s8_yolo')
+    ap.add_argument('--results', default='', help='default: data/s8, or data/s8_yolo')
     ap.add_argument('--victim', default='aruco', choices=['aruco', 'yolo'],
                     help='aruco: box + ArUco detector (S8); yolo: doll + YOLO detector (S7b)')
     ap.add_argument('--stop-on-victim', action='store_true', help='end each trial at the victim')
@@ -114,7 +114,7 @@ def main():
     with open(args.sets) as f:
         sets = yaml.safe_load(f)
     trials = args.trials or sets['trials']
-    args.results = args.results or ('results/s8_yolo' if args.victim == 'yolo' else 'results/s8')
+    args.results = args.results or ('data/s8_yolo' if args.victim == 'yolo' else 'data/s8')
     only = [o for o in args.only.split(',') if o]
     os.makedirs(args.results, exist_ok=True)
     todo = []

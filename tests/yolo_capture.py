@@ -1,7 +1,7 @@
 """Capture camera frames of a person model at several distances (for the YOLO test, S7b).
 
   (sim_one_robot running with world floor_novictim.sdf and a person model spawned)
-  python3 result/validation/yolo_capture.py <out_dir> <person_x> <person_y> d1 d2 ...
+  python3 tests/yolo_capture.py <out_dir> <person_x> <person_y> d1 d2 ...
 
 Teleports robot1 (gz set_pose) to distance d on the -x side of the person, facing it, waits
 for fresh frames and saves /camera/image_raw as <out_dir>/d<d>.png. Only the camera matters

@@ -1,6 +1,6 @@
 #!/bin/bash
 # Capture frames of one Fuel person model at 1-4 m for the YOLO test (S7b).
-#   bash result/validation/yolo_capture.sh "<Fuel model name>|model://<local>" <out_dir> [yaw]
+#   bash tests/yolo_capture.sh "<Fuel model name>|model://<local>" <out_dir> [yaw]
 # Person at (5.7, 0.7) in room B (a clear 4 m line along y = 0.7), facing yaw (default: pi,
 # towards -x, where the camera is).
 cd ~/Desktop/multirover
@@ -15,5 +15,5 @@ case "$MODEL" in model://*) URI="$MODEL";; *) URI="https://fuel.gazebosim.org/1.
 ros2 run ros_gz_sim create -name person -x 5.7 -y 0.7 -z 0.0 -Y "$YAW" \
   -string "<?xml version=\"1.0\"?><sdf version=\"1.9\"><include><uri>$URI</uri></include></sdf>" > /dev/null 2>&1
 sleep 4
-timeout 90 python3 result/validation/yolo_capture.py "$OUT" 5.7 0.7 ${DISTS:-1.0 2.0 3.0 4.0}
+timeout 90 python3 tests/yolo_capture.py "$OUT" 5.7 0.7 ${DISTS:-1.0 2.0 3.0 4.0}
 kill -INT -$PG; sleep 6; kill -9 -$PG 2>/dev/null; true

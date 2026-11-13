@@ -11,7 +11,7 @@ Kept for transparency, not used in any table or figure.
 
 - `s8_prefix/n2_nearest_t05_B_V3` ("stalled", 88.4 %): hit a coordinator deadlock (frontiers
   left but none reachable, so no goal and no "done"), fixed from trial 61 on
-  (`unreachable_timeout`). Re-run with the fix; the re-run is in results/s8/.
+  (`unreachable_timeout`). Re-run with the fix; the re-run is in data/s8/.
 
 - `s8_yolo_doll_in_wall/` (the first 25 YOLO trials, 2026-09-27): the doll sat at the ArUco
   box's centre points, but it is 0.41 m long, so at V2/V3 its back half was 8 cm inside the

@@ -1,7 +1,7 @@
 """One S8 trial: headless sim, N robots, a strategy, a trial plan, a rosbag. Ends by itself.
 
   ros2 launch mrs_experiments trial.launch.py n:=2 strategy:=greedy \
-      plan_file:=results/s8/<tag>/trial_plan.yaml run_dir:=results/s8/<tag> tag:=<tag>
+      plan_file:=data/s8/<tag>/trial_plan.yaml run_dir:=data/s8/<tag> tag:=<tag>
 
 Runs mrs_exploration's sim_multi_robot.launch.py (headless, no RViz, exit_when_done true,
 by default full exploration: stop_on_victim false; victim:=aruco box or yolo doll) with the trial plan's start poses and victim, and

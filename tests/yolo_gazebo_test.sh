@@ -1,6 +1,6 @@
 #!/bin/bash
 # YOLO victim detector accuracy on the real Gazebo camera + lidar (S7b).
-#   bash result/validation/yolo_gazebo_test.sh <robot_x> <robot_y> <robot_yaw> [person_yaw]
+#   bash tests/yolo_gazebo_test.sh <robot_x> <robot_y> <robot_yaw> [person_yaw]
 # One robot (sim_one_robot, un-namespaced, odom TF from gz) at the pose, the doll-sized person
 # (model://victim_person) at (5.7, 0.7); yolo_victim_node runs 12 s from the venv in the robot's
 # odom frame. Prints its stats and the error against the true position.

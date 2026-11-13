@@ -197,7 +197,7 @@ def generate_launch_description():
         DeclareLaunchArgument('headless', default_value='false'),
         DeclareLaunchArgument('rviz', default_value='true'),
         DeclareLaunchArgument('record', default_value='true', description='Run exploration_monitor'),
-        DeclareLaunchArgument('results_dir', default_value='results/s6'),
+        DeclareLaunchArgument('results_dir', default_value='data/s6'),
         DeclareLaunchArgument('run_dir', default_value='',
                               description='exact results folder (S8 trials); default <results_dir>/<stamp>_<tag>'),
         DeclareLaunchArgument('plan_file', default_value='',

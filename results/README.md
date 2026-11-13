@@ -1,26 +1,26 @@
 # Multirover: simulation results (S0–S8, S7b YOLO)
 
 Report-ready results for the simulation phase, collected on 2026-09-26. Everything here is
-either copied from `../results/` (the raw folder every run writes to automatically) or
+either copied from `../data/` (the raw folder every run writes to automatically) or
 regenerated from it:
 
 ```bash
-cd ~/Desktop/multirover && python3 result/make_result.py
+cd ~/Desktop/multirover && python3 analysis/make_result.py
 ```
 
-Re-run that after new experiments (S8). New runs in `results/s5/` and `results/s6/` are picked
-up automatically. Runs in `results/excluded/` are left out, with the reason written there.
+Re-run that after new experiments (S8). New runs in `data/s5/` and `data/s6/` are picked
+up automatically. Runs in `data/excluded/` are left out, with the reason written there.
 
 ![Arena](figures/arena.png)
 
-**Setup** (exact versions in `setup/versions.txt`): ROS 2 Jazzy, Gazebo Harmonic (headless, real-time factor 1.0, NVIDIA RTX 4070),
+**Setup** (exact versions in `../docs/setup/versions.txt`): ROS 2 Jazzy, Gazebo Harmonic (headless, real-time factor 1.0, NVIDIA RTX 4070),
 slam_toolbox, robot_localization EKF, Nav2 (Smac 2D + Regulated Pure Pursuit). The arena is
 6 × 5 m: a hall, 3 rooms, 0.8 m doors, 2 loops and 3 box obstacles. The robot is a 2-wheel
 differential drive with a 2D lidar (10 Hz), IMU and camera. All times are simulation seconds.
 
 ## Where everything is
 
-**In this folder (`result/`), ready for the report:**
+**In this folder (`results/`), ready for the report:**
 
 | Path | What it is |
 |---|---|
@@ -39,19 +39,19 @@ differential drive with a 2D lidar (10 Hz), IMU and camera. All times are simula
 | `figures/s8/localization_failures.png` | S8: the 5 localization failures (sudden SLAM jumps) |
 | `figures/s8/yolo_vs_aruco.png` | S7b: time to confirm the victim, YOLO vs ArUco |
 | `figures/maps/` | Map-vs-ground-truth overlays: S3, S5, S6, `s7/`, `s8/` (all 110). Black = true walls, red = mapped walls near a true wall, orange = mapped walls that aren't, blue = mapped free space |
-| `validation/` | The tests behind specific claims (merge, coordinator, ArUco accuracy offline and in Gazebo, the S4 costmap bug), with their results |
-| `setup/versions.txt`, `setup/config/`, `setup/README.md` | Machine and package versions, the configs used, the commands to reproduce each step |
-| `data/s4/` | The S4 trajectory data and its plotting script |
-| `make_result.py`, `s8_analysis.py`, `report_figures.py`, `loc_error.py` | Rebuild all of `tables/` and `figures/`: `python3 result/make_result.py` |
+| `../tests/` | The tests behind specific claims (merge, coordinator, ArUco accuracy offline and in Gazebo, the S4 costmap bug), with their results |
+| `../docs/setup/versions.txt`, `../docs/setup/config/`, `../docs/setup/README.md` | Machine and package versions, the configs used, the commands to reproduce each step |
+| `../data/s4/` | The S4 trajectory data; plotting script: `../analysis/plot_nav_trace.py` |
+| `../analysis/make_result.py`, `../analysis/s8_analysis.py`, `../analysis/report_figures.py`, `../analysis/loc_error.py` | Rebuild all of `tables/` and `figures/`: `python3 analysis/make_result.py` |
 
-**Raw data (`../results/`)**, which the tables are computed from:
+**Raw data (`../data/`)**, which the tables are computed from:
 - `s5/`, `s6/`, `s7/`, `pilot/`, `s8/<tag>/`: one folder per run, each with:
   - `summary.yaml`, `coverage.csv`, `map.pgm/.yaml`, `map_vs_gt.png`
   - S8 also: `trajectories.csv`, `trial_plan.yaml`, `loc_error.yaml`, `bag/` (zstd MCAP)
-  - ROS bags are available through the [dataset download](../datasets/README.md); runtime logs are omitted.
+  - ROS bags are available through the [dataset download](../data/README.md); runtime logs are omitted.
 - `excluded/`: runs left out, with the reason
 
-**Code:** `../src/` (the patch to the cloned explore_lite is also in `setup/config/`).
+**Code:** `../src/` (the patch to the cloned explore_lite is also in `../docs/setup/config/`).
 
 ## Key results by step
 
@@ -243,7 +243,7 @@ wall F1, free IoU, time to victim, victim error) is in `tables/s8_summary.md`.
 7. **Not completed: 1 of 110 trials**, n1_nearest_t03 ("stalled"): the robot was pinned between a
    box and a wall, where Nav2 refused spin and back-up recoveries as collisions. A second stalled
    trial was a coordinator deadlock. It was fixed during the campaign and re-run, and the
-   original is in `../results/excluded/`.
+   original is in `../data/excluded/`.
 
 **Campaign fixes:**
 - explore_lite could loop forever on a frontier that can't be cleared (patched: blacklist a
@@ -303,7 +303,7 @@ wall F1, free IoU, time to victim, victim error) is in `tables/s8_summary.md`.
    likely by the bigger victim.
 6. **Why the first YOLO campaign was discarded:** the doll first sat at the box's centre points,
    so at V2/V3 its back half was inside the wall (errors up to 28 cm). Those 25 trials are in
-   `../results/excluded/`.
+   `../data/excluded/`.
 
 ## Caveats (state these in the report)
 - **Sample sizes:** S5–S7 have 1–6 runs per configuration (all robots starting in the hall).
@@ -313,7 +313,7 @@ wall F1, free IoU, time to victim, victim error) is in `tables/s8_summary.md`.
   investigation in S5/S6, while S8 used 1 s and investigation on. Compare numbers within a step,
   not across steps.
 - **Excluded run:** one 2-robot run (42 s) is left out because it started on a stale,
-  almost-complete map from a leftover process. See `../results/excluded/README.md`. Earlier
+  almost-complete map from a leftover process. See `../data/excluded/README.md`. Earlier
   summaries quoted 56.5 s for "2 robots, greedy", which included that run; the
   corrected value is 61.3 s.
 - **Two versions of greedy and hungarian:** runs tagged `gh*`/`hh*` have hysteresis 2.0,

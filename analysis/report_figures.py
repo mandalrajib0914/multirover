@@ -89,7 +89,7 @@ def load_traj(run_dir):
 def fig_trajectories(root, out, layout='t00_A_V1', n=3):
     plan = yaml.safe_load(open(os.path.join(root, 'src', 'mrs_gazebo', 'config', 'floor_plan.yaml')))
     pairs = [('greedy', 'coordinated (greedy)'), ('independent', 'independent explore_lite')]
-    dirs = [os.path.join(root, 'results', 's8', f'n{n}_{s}_{layout}') for s, _ in pairs]
+    dirs = [os.path.join(root, 'data', 's8', f'n{n}_{s}_{layout}') for s, _ in pairs]
     if not all(os.path.exists(os.path.join(d, 'trajectories.csv')) for d in dirs):
         return
     fig, axes = plt.subplots(1, 2, figsize=(12, 6.0), facecolor=SURFACE)
@@ -118,7 +118,7 @@ def fig_localization(root, out, threshold=0.30):
         print('localization figure skipped (source ROS to build it)')
         return
     fails = []
-    for f in sorted(glob.glob(os.path.join(root, 'results', 's8', '*', 'loc_error.yaml'))):
+    for f in sorted(glob.glob(os.path.join(root, 'data', 's8', '*', 'loc_error.yaml'))):
         y = yaml.safe_load(open(f))
         if y['max_error_m'] and y['max_error_m'] > threshold:
             fails.append((os.path.dirname(f), max(y['per_robot_max_m'], key=y['per_robot_max_m'].get)))
@@ -156,21 +156,21 @@ def fig_localization(root, out, threshold=0.30):
 def copy_s8_maps(root, out):
     dst = os.path.join(out, 'figures', 'maps', 's8')
     os.makedirs(dst, exist_ok=True)
-    for f in glob.glob(os.path.join(root, 'results', 's8', '*', 'map_vs_gt.png')):
+    for f in glob.glob(os.path.join(root, 'data', 's8', '*', 'map_vs_gt.png')):
         shutil.copy(f, os.path.join(dst, os.path.basename(os.path.dirname(f)) + '.png'))
-    for f in glob.glob(os.path.join(root, 'results', 's7', '*', 'map_vs_gt.png')):
+    for f in glob.glob(os.path.join(root, 'data', 's7', '*', 'map_vs_gt.png')):
         os.makedirs(os.path.join(out, 'figures', 'maps', 's7'), exist_ok=True)
         shutil.copy(f, os.path.join(out, 'figures', 'maps', 's7',
                                     os.path.basename(os.path.dirname(f)) + '.png'))
 
 
 def fig_s4(root, out):
-    """S4 nav_check trajectories, from the saved trace (result/data/s4)."""
+    """S4 nav_check trajectories, from the saved trace (data/s4)."""
     import subprocess
     import sys
-    data = os.path.join(out, 'data', 's4')
+    data = os.path.join(root, 'data', 's4')
     if os.path.exists(os.path.join(data, 'nav_check_trace.csv')):
-        subprocess.run([sys.executable, os.path.join(data, 'plot_nav_trace.py'),
+        subprocess.run([sys.executable, os.path.join(root, 'analysis', 'plot_nav_trace.py'),
                         os.path.join(data, 'nav_check_trace.csv'),
                         os.path.join(out, 'figures', 's4_nav_check_trajectories.png'),
                         '0.2', '5.8', '0', '2.4'], cwd=root, check=True)

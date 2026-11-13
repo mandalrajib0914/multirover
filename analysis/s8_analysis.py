@@ -1,4 +1,4 @@
-"""S8 campaign analysis: results/s8/<tag>/ -> result/tables/s8_* and result/figures/s8/.
+"""S8 campaign analysis: data/s8/<tag>/ -> results/tables/s8_* and results/figures/s8/.
 
 Called by make_result.py. Each trial folder (written by exploration_monitor via
 run_campaign.py) has summary.yaml, coverage.csv, trajectories.csv and trial_plan.yaml; the
@@ -66,7 +66,7 @@ def overlap(traj_file):
 
 def load(root, folder='s8'):
     trials = []
-    for f in sorted(glob.glob(os.path.join(root, 'results', folder, '*', 'summary.yaml'))):
+    for f in sorted(glob.glob(os.path.join(root, 'data', folder, '*', 'summary.yaml'))):
         d = yaml.safe_load(open(f))
         folder = os.path.dirname(f)
         tag = os.path.basename(folder)
@@ -299,7 +299,7 @@ def write_md(path, summary, speedups):
 
 
 def detector_comparison(root, out, aruco):
-    """S7b: YOLO (doll) vs ArUco (box) on the same S8 trial layouts (results/s8_yolo vs s8)."""
+    """S7b: YOLO (doll) vs ArUco (box) on the same S8 trial layouts (data/s8_yolo vs s8)."""
     yolo = load(root, 's8_yolo')
     if not yolo:
         return

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Check headline results and export paired statistical tests from the raw trial data.
 
-Run from the repository root: python3 result/verify_results.py
+Run from the repository root: python3 analysis/verify_results.py
 This reads measurements; it does not run simulation or require the ROS bags.
 """
 from pathlib import Path
@@ -78,13 +78,13 @@ def main():
     expected_adjusted = [.012] * 6 + [.480, .059, .480, .244, .438, .674,
                                      .027, .018, .008, .193, .557]
     assert [round(r['p_holm'], 3) for r in rows] == expected_adjusted
-    analysis.write_csv(str(root / 'result/tables/paired_statistics.csv'), rows)
+    analysis.write_csv(str(root / 'results/tables/paired_statistics.csv'), rows)
     errors = [100 * t['victim_error_m'] for t in aruco if t['victim_confirmed']]
     print('Verified trial counts, completions, detections, Table 1 times, nearest speedups,')
     print('and Table 2 Holm-adjusted p-values against the submitted paper.')
     print(f'ArUco confirmed-position error: mean {statistics.mean(errors):.2f} cm; '
           f'maximum {max(errors):.2f} cm (100 confirmed trials).')
-    print('Wrote result/tables/paired_statistics.csv')
+    print('Wrote results/tables/paired_statistics.csv')
 
 
 if __name__ == '__main__':

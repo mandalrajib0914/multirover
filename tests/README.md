@@ -15,4 +15,4 @@ from `~/Desktop/multirover` with ROS sourced:
 Also in the source tree:
 - `src/mrs_gazebo/scripts/odom_sanity_check.py` (S2 odometry against ground truth)
 - `src/mrs_navigation/scripts/nav_check.py` (the S4 Nav2 tests)
-- `result/loc_error.py` (S8 localization error from the bags)
+- `analysis/loc_error.py` (S8 localization error from the bags)

@@ -22,4 +22,4 @@
 | S5 one robot explores | `ros2 launch mrs_exploration sim_explore.launch.py headless:=true rviz:=false exit_when_done:=true` |
 | S6/S7 multi-robot mission | `ros2 launch mrs_exploration sim_multi_robot.launch.py n:=2 strategy:=greedy` (`stop_on_victim:=false` to explore everything) |
 | S8 campaign (≈ 4.5 h, resumable) | `ros2 run mrs_experiments run_campaign.py` |
-| All tables and figures | `python3 result/make_result.py` (source ROS first to also build the localization figure) |
+| All tables and figures | `python3 analysis/make_result.py` (source ROS first to also build the localization figure) |

@@ -10,7 +10,7 @@ def to_msg(grid, res, ox, oy, yaw=0.0):
     m.info.origin.position.x, m.info.origin.position.y = ox, oy
     m.data = np.where(grid == 1, 100, np.where(grid == 0, 0, -1)).astype(np.int8).ravel().tolist(); return m
 gt, gres, (gox, goy) = load_map_yaml('src/mrs_gazebo/maps/floor_gt.yaml')
-f = sorted(glob.glob('results/s5/*run2/map.yaml'))[0]
+f = sorted(glob.glob('data/s5/*run2/map.yaml'))[0]
 sm, sres, (sox, soy) = load_map_yaml(f)
 # 1) one robot, spawn pose -> compare with gt like map_vs_gt (coverage)
 out, x0, y0 = merge_grids({'r1': to_msg(sm, sres, sox, soy)}, {'r1': (0.5, 0.5, 0.0)}, 0.05)

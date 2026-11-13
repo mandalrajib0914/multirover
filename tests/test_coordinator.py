@@ -22,7 +22,7 @@ cost = np.array([[1.0, 1.4], [1.0, 1.4]])
 for st in ('nearest', 'greedy', 'hungarian'):
     print(f'C {st:9s}', assign(st, gains, cost, 0.5, 1.5, goals))
 # D) real S5 map (partially explored copy): frontiers + timing
-yml = sorted(glob.glob('results/s5/*run2/map.yaml'))[0]
+yml = sorted(glob.glob('data/s5/*run2/map.yaml'))[0]
 sm, sres, so = load_map_yaml(yml)
 part = sm.copy(); part[:, part.shape[1] // 2:] = -1          # hide the right half
 occ = np.where(part == 1, 100, np.where(part == 0, 0, -1)).astype(np.int8)

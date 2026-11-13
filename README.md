@@ -22,17 +22,19 @@ performance on physical robots or in damaged buildings.
 
 - `src/`: ROS packages, robot description, simulation worlds, navigation,
   exploration, perception, and experiment runner.
-- `results/`: per-run measurements, maps, configurations, and summaries.
-  `results/excluded/` preserves invalid runs and explains their exclusion.
-- `result/`: analysis scripts, validation scripts, tables, and figures.
-- `result/setup/`: recorded software versions and experiment configurations.
+- `data/`: per-run measurements, maps, configurations, and summaries.
+  `data/excluded/` preserves invalid runs and explains their exclusion.
+- `analysis/`: scripts that process measurements and generate tables and figures.
+- `results/`: generated tables, figures, and a summary of findings.
+- `tests/`: component and simulation validation scripts.
+- `docs/`: reproduction instructions, recorded software versions, and experiment configurations.
 
-![Simulation arena](result/figures/arena.png)
+![Simulation arena](results/figures/arena.png)
 
-See the [reproduction guide](REPRODUCIBILITY.md) for setup and analysis instructions.
+See the [reproduction guide](docs/REPRODUCIBILITY.md) for setup and analysis instructions.
 
-Start with [the results and limitations](result/README.md) and
-[the reproduction commands](result/setup/README.md).
+Start with [the results and limitations](results/README.md) and
+[the reproduction commands](docs/setup/README.md).
 
 ## Build and run
 
@@ -59,7 +61,7 @@ ros2 run mrs_experiments run_campaign.py
 ```
 
 The campaign runner cleans up matching simulation and ROS processes between
-trials; use a dedicated simulation session. It writes new runs into `results/`
+trials; use a dedicated simulation session. It writes new runs into `data/`
 and skips trials that already have summaries. Preserve the published dataset
 before starting a new campaign.
 
@@ -68,7 +70,7 @@ before starting a new campaign.
 ```bash
 python3 -m venv --system-site-packages .venv
 .venv/bin/python -m pip install -c venv_constraints.txt numpy scipy matplotlib pyyaml
-.venv/bin/python result/make_result.py
+.venv/bin/python analysis/make_result.py
 ```
 
 For YOLO experiments, also install `ultralytics` with `venv_constraints.txt`.
@@ -76,7 +78,7 @@ See `src/mrs_perception/config/yolo.yaml` for detector settings.
 
 The repository includes extracted data, localization summaries, and figures.
 All 175 original compressed ROS bags and their metadata are available as a
-[separate dataset download](datasets/README.md) (about 1.4 GB).
+[separate dataset download](data/README.md) (about 1.4 GB).
 Recomputing localization errors and their time-series figure requires that dataset
 and ROS 2 with rosbag2 MCAP/zstd support. Runtime logs are omitted.
 Paper drafts, conference submissions, and presentation materials are not included.

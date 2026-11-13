@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Localization error of one S8 trial: the robots' pose from the recorded /tf vs gz ground truth.
 
-  python3 result/loc_error.py results/s8/<tag> [--plot out.png]
+  python3 analysis/loc_error.py data/s8/<tag> [--plot out.png]
 
 For each robot the pose in the world frame "map" is rebuilt from the bag's TF chain
 map -> robotN/map (static, spawn pose) -> robotN/odom (slam_toolbox) -> robotN/base_footprint

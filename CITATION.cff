@@ -5,10 +5,10 @@ title: "Multirover: Coordinated Frontier Exploration and Victim Localization"
 authors:
   - family-names: Mandal
     given-names: Rajib
-version: 1.0.0
-date-released: 2026-11-13
+version: 1.1.0
+date-released: 2026-11-14
 repository-code: "https://github.com/mandalrajib0914/multirover"
-url: "https://github.com/mandalrajib0914/multirover/releases/tag/v1.0.0"
+url: "https://github.com/mandalrajib0914/multirover/releases/tag/v1.1.0"
 abstract: >-
   ROS 2 simulation, frontier coordination, victim detection, and recorded
   experimental data for indoor exploration with one to three ground robots.

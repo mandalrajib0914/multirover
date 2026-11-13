@@ -1,5 +1,5 @@
 # Plot a nav_check.py --trace CSV over the floor plan (S4).
-#   python3 result/data/s4/plot_nav_trace.py result/data/s4/nav_check_trace.csv out.png [x0 x1 y0 y1]
+#   python3 analysis/plot_nav_trace.py data/s4/nav_check_trace.csv out.png [x0 x1 y0 y1]
 import csv, math, sys, yaml
 import matplotlib; matplotlib.use('Agg')
 import matplotlib.pyplot as plt

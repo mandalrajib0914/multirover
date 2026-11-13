@@ -39,7 +39,7 @@ def generate_launch_description():
         DeclareLaunchArgument('headless', default_value='false'),
         DeclareLaunchArgument('rviz', default_value='true'),
         DeclareLaunchArgument('record', default_value='true', description='Run exploration_monitor'),
-        DeclareLaunchArgument('results_dir', default_value='results/s5'),
+        DeclareLaunchArgument('results_dir', default_value='data/s5'),
         DeclareLaunchArgument('timeout', default_value='900.0', description='sim seconds'),
         DeclareLaunchArgument('tag', default_value='', description='suffix for the results folder'),
         DeclareLaunchArgument('exit_when_done', default_value='false'),

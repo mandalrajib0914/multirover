@@ -1,7 +1,7 @@
 """Record one exploration run: time, coverage vs time, distance, final map score.
 
   ros2 run mrs_exploration exploration_monitor --ros-args -p use_sim_time:=true \
-      [-p robot:=robot1] [-p results_dir:=results/s5] [-p timeout:=900.0]
+      [-p robot:=robot1] [-p results_dir:=data/s5] [-p timeout:=900.0]
   multi-robot (S6): -p robots:="['robot1','robot2']" -p map_frame:=world \
       -p status_topics:="['/coordinator/status']"      (or one explore/status per robot)
 
@@ -113,7 +113,7 @@ class ExplorationMonitor(Node):
         self.map_frame = self.declare_parameter('map_frame', 'robot').value   # robot | world
         self.strategy = self.declare_parameter('strategy', '').value          # for the record
         world = self.declare_parameter('world', 'floor').value
-        results = self.declare_parameter('results_dir', 'results/s5').value
+        results = self.declare_parameter('results_dir', 'data/s5').value
         self.timeout = self.declare_parameter('timeout', 900.0).value
         self.period = self.declare_parameter('period', 5.0).value
         self.return_timeout = self.declare_parameter('return_timeout', 120.0).value
