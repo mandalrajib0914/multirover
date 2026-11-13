@@ -29,8 +29,7 @@ performance on physical robots or in damaged buildings.
 
 ![Simulation arena](result/figures/arena.png)
 
-For verification, see the [reproduction guide](REPRODUCIBILITY.md) and
-[comparison with the submitted paper](VERIFICATION.md).
+See the [reproduction guide](REPRODUCIBILITY.md) for setup and analysis instructions.
 
 Start with [the results and limitations](result/README.md) and
 [the reproduction commands](result/setup/README.md).

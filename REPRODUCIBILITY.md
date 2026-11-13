@@ -32,8 +32,7 @@ replication of the simulations or a check of every sentence in the paper.
 | Localization errors | `results/s8/*/loc_error.yaml`, `result/loc_error.py`, recorded bags |
 
 Figures are repository versions of the analysis, not exact copies of the paper's
-page layout. See [verification notes](VERIFICATION.md) for interpretation and
-corrections.
+page layout.
 
 ## 2. Recompute localization from the ROS bags
 
